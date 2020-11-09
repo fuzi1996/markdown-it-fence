@@ -30,6 +30,56 @@ md.use(yourPlugin).render(`content you want to parse`)
 
 ```
 
+### Example
+
+Markdown:
+
+~~~md
+:::customrender
+
+*hello world*
+
+```js
+function() {
+  console.log('hi')
+}
+```
+
+:::customrender
+__bar__
+:::
+
+:::
+~~~
+
+And your js
+
+```js
+markdownitfence(md, "customrender", {
+  marker: ":",
+  render: (tokens, idx, options, env, self) => {
+    return `<div class="bar">${md.render(tokens[idx].content)}</div>`
+  },
+})
+
+
+const html = md.use(plugin).render(myMarkdown)
+console.log(html)
+```
+
+And it'll print:
+
+```html
+<div class="bar"><p><em>hello world</em></p>
+<pre><code class="language-js">function() {
+  console.log('hi')
+}
+</code></pre>
+<div class="bar"><p><strong>bar</strong></p>
+</div></div><pre><code></code></pre>
+```
+
+
 ### Option params
 
 ##### marker

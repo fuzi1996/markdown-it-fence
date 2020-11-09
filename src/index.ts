@@ -1,16 +1,28 @@
 'use strict'
 
-export default function (md, name, opts) {
-  function defaultValidate(params) {
+import MarkdownIt from "markdown-it"
+import ParserBlock from "markdown-it/lib/parser_block"
+import Renderer, { RenderRule } from "markdown-it/lib/renderer"
+import Token from "markdown-it/lib/token"
+
+export interface Options extends MarkdownIt.Options {
+  render?: RenderRule
+  marker?: string
+}
+
+
+
+export default function (md: MarkdownIt, name: string, opts?: Options) {
+
+  function defaultValidate(params: string): boolean {
     return params.trim().split(' ', 2)[0] === name
   }
 
-  function defaultRender(tokens, idx, _options, env, self) {
+  const defaultRender: RenderRule = (tokens: Token[], idx: number, _options: MarkdownIt.Options, env: any, self: Renderer): string => {
     if (tokens[idx].nesting === 1) {
       tokens[idx].attrPush(['class', name])
     }
-
-    return self.renderToken(tokens, idx, _options, env, self)
+    return self.renderToken(tokens, idx, _options)
   }
 
   const options = Object.assign({
@@ -18,7 +30,7 @@ export default function (md, name, opts) {
     render: defaultRender
   }, opts)
 
-  function fence(state, startLine, endLine) {
+  const fence: ParserBlock.RuleBlock = (state, startLine, endLine) => {
     const optionMarker = options.marker || '`'
     let pos = state.bMarks[startLine] + state.tShift[startLine]
     let max = state.eMarks[startLine]
