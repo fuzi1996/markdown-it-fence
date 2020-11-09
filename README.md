@@ -5,6 +5,9 @@
 
 > fence customize plugin for markdown-it
 
+* TypeScript 4.x support
+* Debug tests with VSCode
+
 ## Install
 
 ```bash
@@ -102,6 +105,7 @@ Type: `function`<br>
 Default: [defaultValidate](./src/index.js)
 
 Validate function.
+
 
 ## Contributing
 

@@ -1,6 +1,6 @@
 {
   "name": "@mbalex99/markdown-it-fence",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "fence customize plugin for markdown-it",
   "repository": {
     "url": "mbalex99/markdown-it-fence",
@@ -13,11 +13,10 @@
   ],
   "scripts": {
     "test": "jest",
-    "lint": "xo",
     "build": "rm -rf dist && tsc",
-    "prepare": ""
+    "prepare": "npm run build"
   },
-  "author": "Maximilian ALexander <mbalex99@gmail.com>",
+  "author": "Maximilian Alexander <mbalex99@gmail.com>",
   "keywords": [
     "markdown",
     "md",
