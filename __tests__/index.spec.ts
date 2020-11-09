@@ -1,8 +1,6 @@
 import markdownIt from "markdown-it";
 import mdFence from "../src";
 
-const md = markdownIt();
-
 const res = "I'm testing";
 
 test("main", () => {
@@ -10,6 +8,7 @@ test("main", () => {
 });
 
 test("name unmatched", () => {
+  const md = markdownIt();
   const testStr = `
 \`\`\`test
 I'm testing
@@ -26,6 +25,7 @@ I'm testing
 });
 
 test("custom marker", () => {
+  const md = markdownIt();
   const testStr = `
 :::test
 I'm testing
@@ -42,6 +42,7 @@ I'm testing
 });
 
 test("default render test", () => {
+  const md = markdownIt();
   const testStr = `
 \`\`\`
 # Header1
@@ -63,6 +64,7 @@ test("default render test", () => {
 });
 
 test("custom render", () => {
+  const md = markdownIt();
   const testStr = `
 ***customrender
 world
@@ -80,6 +82,7 @@ world
 });
 
 test("custom render with wrapping", () => {
+  const md = markdownIt();
   const testStr = `
 :::customrender
 
@@ -102,7 +105,7 @@ __bar__
     mdFence(md, "customrender", {
       marker: ":",
       render: (tokens, idx, options, env, self) => {
-        return `<div class="bar">${md.render(tokens[idx].content)}</div>`
+        return `<div class="bar">${md.render(tokens[idx].content)}</div>`;
       },
     });
   };
@@ -110,12 +113,6 @@ __bar__
   const renderedString = md.use(plugin).render(testStr);
 
   expect(renderedString).toEqual(
-`<div class="bar"><p><em>hello world</em></p>
-<pre><code class="language-js">function() {
-  console.log('hi')
-}
-</code></pre>
-<div class="bar"><p><strong>bar</strong></p>
-</div></div><pre><code></code></pre>
-`);
+    `<div class="bar"><p><em>hello world</em></p>\n<pre><code class="language-js">function() {\n  console.log('hi')\n}\n</code></pre>\n<div class="bar"><p><strong>bar</strong></p>\n</div></div><pre><code></code></pre>\n`
+  );
 });
