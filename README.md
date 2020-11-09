@@ -1,8 +1,11 @@
 # markdown-it-fence
 
-![build](https://github.com/mbalex99/markdown-it-fence/workflows/build/badge.svg)
+![ts](https://badgen.net/badge/Built%20With/TypeScript/blue)
+[![Actions Status](https://github.com/mbalex99/markdown-it-fence/workflows/Node.js%20CI/badge.svg)](https://github.com/mbalex99/markdown-it-fence/actions)
 
-[![NPM version](https://img.shields.io/npm/v/markdown-it-fence.svg?style=flat)](https://npmjs.com/package/markdown-it-fence) [![NPM downloads](https://img.shields.io/npm/dm/markdown-it-fence.svg?style=flat)](https://npmjs.com/package/markdown-it-fence) [![Build Status](https://img.shields.io/circleci/project/geekplux/markdown-it-fence/master.svg?style=flat)](https://circleci.com/gh/geekplux/markdown-it-fence) [![codecov](https://codecov.io/gh/geekplux/markdown-it-fence/branch/master/graph/badge.svg)](https://codecov.io/gh/geekplux/markdown-it-fence)
+
+Donate to the original developer:
+
  [![donate](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat)](http://donate.geekplux.com)
 
 > fence customize plugin for markdown-it
