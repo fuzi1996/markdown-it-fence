@@ -1,5 +1,7 @@
 # markdown-it-fence
 
+![build](https://github.com/mbalex99/markdown-it-fence/workflows/build/badge.svg)
+
 [![NPM version](https://img.shields.io/npm/v/markdown-it-fence.svg?style=flat)](https://npmjs.com/package/markdown-it-fence) [![NPM downloads](https://img.shields.io/npm/dm/markdown-it-fence.svg?style=flat)](https://npmjs.com/package/markdown-it-fence) [![Build Status](https://img.shields.io/circleci/project/geekplux/markdown-it-fence/master.svg?style=flat)](https://circleci.com/gh/geekplux/markdown-it-fence) [![codecov](https://codecov.io/gh/geekplux/markdown-it-fence/branch/master/graph/badge.svg)](https://codecov.io/gh/geekplux/markdown-it-fence)
  [![donate](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat)](http://donate.geekplux.com)
 
@@ -11,8 +13,8 @@
 ## Install
 
 ```bash
-yarn add markdown-it-fence --save
-npm install markdown-it-fence --save
+yarn add @mbalex99/markdown-it-fence --save
+npm install @mbalex99/markdown-it-fence --save
 ```
 
 ## Usage
