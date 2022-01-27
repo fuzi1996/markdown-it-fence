@@ -116,3 +116,18 @@ __bar__
     `<div class="bar"><p><em>hello world</em></p>\n<pre><code class="language-js">function() {\n  console.log('hi')\n}\n</code></pre>\n<div class="bar"><p><strong>bar</strong></p>\n</div></div><pre><code></code></pre>\n`
   );
 });
+
+test("render normal code block", () => {
+  const md = markdownIt();
+  const testStr = `
+- 1
+
+\`\`\` js
+console.log('this is js');
+
+\`\`\`
+  `;
+
+  const plugin = () => mdFence(md, "mytest");
+  expect(md.use(plugin).render(testStr)).toBe(markdownIt().render(testStr));
+});
