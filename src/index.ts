@@ -30,13 +30,14 @@ export default function (md: MarkdownIt, name: string, opts?: Options) {
     render: defaultRender
   }, opts)
 
-  const fence: ParserBlock.RuleBlock = (state, startLine, endLine) => {
+  const fence: ParserBlock.RuleBlock = (state, startLine, endLine, silent) => {
     const optionMarker = options.marker || '`'
     let pos = state.bMarks[startLine] + state.tShift[startLine]
     let max = state.eMarks[startLine]
     let haveEndMarker = false
 
     if (state.sCount[startLine] - state.blkIndent >= 4) return false
+
     if (pos + 3 > max) return false
 
     const marker = state.src.charCodeAt(pos)
@@ -45,6 +46,7 @@ export default function (md: MarkdownIt, name: string, opts?: Options) {
 
     let mem = pos
     pos = state.skipChars(pos, marker)
+    
     let len = pos - mem
 
     if (len < 3) return false
@@ -53,6 +55,9 @@ export default function (md: MarkdownIt, name: string, opts?: Options) {
     const params = state.src.slice(pos, max)
 
     if (params.indexOf(String.fromCharCode(marker)) >= 0) return false
+
+    // Since start is found, we can report success here in validation mode
+    if (silent) { return true; }
 
     let nextLine = startLine
 
@@ -81,6 +86,7 @@ export default function (md: MarkdownIt, name: string, opts?: Options) {
     }
 
     len = state.sCount[startLine]
+
     state.line = nextLine + (haveEndMarker ? 1 : 0)
 
     let token
@@ -95,6 +101,7 @@ export default function (md: MarkdownIt, name: string, opts?: Options) {
   }
 
   md.block.ruler.before('fence', name, fence, {
-    alt: ['paragraph', 'reference', 'blockquote', 'list']})
+    alt: ['paragraph', 'reference', 'blockquote', 'list']
+  })
   md.renderer.rules[name] = options.render
 }
